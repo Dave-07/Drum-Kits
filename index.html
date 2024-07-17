@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Drum-kits</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 192, 203);
+    }
+
+    h1 {
+        font-size: 50px;
+        letter-spacing: 4px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        white-space: nowrap;
+    }
+
+    .btn {
+        padding: 30px 50px;
+        margin: 5px;
+        min-width: 200px;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        font-family: cursive;
+        font-size: 2rem;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        text-transform: capitalize;
+        background: url(/30-projects/sources/images/crash.png);
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    .btn:hover {
+        color: lightpink;
+    }
+
+    /* .btn:active{
+        background-size: 105%;
+    } */
+</style>
+
+<body>
+    <h1>Drum Kits <i class="fa-solid fa-drum"></i></h1>
+
+    <div class="container">
+        <button class="btn">crash</button>
+        <button class="btn">kick</button>
+        <button class="btn">snare</button>
+        <button class="btn">tom</button>
+    </div>
+    <script>
+
+        const buttons = document.querySelectorAll('.container button');
+        const body = document.querySelector('body');
+        const actionArr = ['crash', 'kick', 'snare', 'tom'];
+        const imagePath = '/images';
+        const soundPath = '/sounds';
+
+        function playSound(type) {
+            const audio = new Audio(`${soundPath}${type}.mp3`);
+            audio.play();
+        }
+
+        function scaleButton(btn){
+                    btn.style.transform = 'scale(.9)';
+                    setTimeout(()=> {
+                        btn.style.transform = 'scale(1)';
+                    }, 100);
+                    };
+
+        function playSoundKey(e, actionArr){
+            switch(e.key.toLowerCase()){
+                    case 'c':
+                        playSound(actionArr[0]);
+                        scaleButton(buttons[0]);
+                        break;
+                    case 'k':
+                        playSound(actionArr[1]);
+                        scaleButton(buttons[1]);
+                        break;
+                    case 's':
+                        playSound(actionArr[2]);
+                        scaleButton(buttons[2]);
+                        break;
+                    case 't':
+                        playSound(actionArr[3]);
+                        scaleButton(buttons[3]);
+                        break;
+                    default:
+                        alert('wrong key!');
+                }   
+            };
+
+        body.addEventListener('keydown', e => {
+                playSoundKey(e, actionArr);
+            });
+
+        buttons.forEach((el, idx) => {
+            el.style.background = `url(${imagePath}${actionArr[idx]}.png) no-repeat top right / cover`;
+
+            if (idx === 3) el.style.backgroundColor = 'white';
+
+            el.setAttribute('onmousedown', "this.style.backgroundSize = '105%'");
+
+            el.setAttribute('onmouseup', "this.style.backgroundSize = '100%'");
+
+            el.addEventListener('click', e => {
+                playSound(actionArr[idx]);
+            });
+
+        });
+
+    </script>
+</body>
+
+</html>
