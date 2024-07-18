@@ -2,8 +2,8 @@
         const buttons = document.querySelectorAll('.container button');
         const body = document.querySelector('body');
         const actionArr = ['crash', 'kick', 'snare', 'tom'];
-        const imagePath = '/images';
-        const soundPath = '/sounds';
+        const imagePath = 'images/';
+        const soundPath = 'sounds/';
 
         function playSound(type) {
             const audio = new Audio(`${soundPath}${type}.mp3`);
