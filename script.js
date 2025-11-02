@@ -18,8 +18,6 @@
         };
 
         function playSoundKey(e, actionArr) {
-            e.preventDefault();
-
             const keyMap = {
                 c: 0,
                 k: 1,
