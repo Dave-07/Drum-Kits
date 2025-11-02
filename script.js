@@ -10,39 +10,40 @@
             audio.play();
         }
 
-        function scaleButton(btn){
-                    btn.style.transform = 'scale(.9)';
-                    setTimeout(()=> {
-                        btn.style.transform = 'scale(1)';
-                    }, 100);
-                    };
+        function scaleButton(btn) {
+            btn.style.transform = 'scale(.9)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+            }, 100);
+        };
 
-        function playSoundKey(e, actionArr){
-            switch(e.key.toLowerCase()){
-                    case 'c':
-                        playSound(actionArr[0]);
-                        scaleButton(buttons[0]);
-                        break;
-                    case 'k':
-                        playSound(actionArr[1]);
-                        scaleButton(buttons[1]);
-                        break;
-                    case 's':
-                        playSound(actionArr[2]);
-                        scaleButton(buttons[2]);
-                        break;
-                    case 't':
-                        playSound(actionArr[3]);
-                        scaleButton(buttons[3]);
-                        break;
-                    default:
-                        alert('wrong key!');
-                }   
+        function playSoundKey(e, actionArr) {
+            e.preventDefault();
+
+            const keyMap = {
+                c: 0,
+                k: 1,
+                s: 2,
+                t: 3,
             };
 
-        body.addEventListener('keydown', e => {
-                playSoundKey(e, actionArr);
+            document.addEventListener('keydown', (e) => {
+                const key = e.key.toLowerCase();
+                const index = keyMap[key];
+
+                if (index !== undefined) {
+                    playSound(actionArr[index]);
+                    scaleButton(buttons[index]);
+                }
             });
+
+        };
+
+
+
+        body.addEventListener('keydown', e => {
+            playSoundKey(e, actionArr);
+        });
 
         buttons.forEach((el, idx) => {
             el.style.background = `url(${imagePath}${actionArr[idx]}.png) no-repeat top right / cover`;
@@ -58,3 +59,5 @@
             });
 
         });
+
+  
