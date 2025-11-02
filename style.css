@@ -18,12 +18,9 @@
     }
 
     h3 {
-        font-size: 30px;
-        letter-spacing: 4px;
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 20px;
+        letter-spacing: 2px;
         color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        white-space: nowrap;
     }
 
 
